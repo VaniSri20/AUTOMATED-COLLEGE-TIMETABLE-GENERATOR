@@ -1,0 +1,1795 @@
+Admin
+<?php
+extract($_POST);
+session_start();
+include("dbconnect.php");
+if(isset($_POST['btn']))
+{
+$uname=$_REQUEST['username'];
+$password=$_REQUEST['password'];
+if($conn->connect_error)
+{
+die("Connection failed: " . $conn->connect_error);
+}
+else
+{
+$qry="select * from admin where username='$uname' and password='$password'";
+$result = mysqli_query($conn, $qry);
+if (mysqli_num_rows($result))
+{
+?>
+<script language="javascript">
+alert("login Success");
+window.location.href="admin_home.php";
+</script>
+<?php
+}
+25
+else
+{
+?>
+<script language="javascript">
+alert("Invalid user");
+</script>
+<?php
+}
+}
+$conn->close();
+}
+?>
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Time Table Generation | Admin </title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fitness Health Responsive web template, Bootstrap Web
+Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG,
+SonyEricsson, Motorola web design" />
+26
+<script>
+addEventListener("load", function () {
+setTimeout(hideURLbar, 0);
+}, false);
+function hideURLbar() {
+window.scrollTo(0, 1);
+}
+</script>
+<!-- css files -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+<link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+<link href="css/fontawesome-all.css" rel="stylesheet"><!-- fontawesome css -->
+<!-- //css files -->
+<!-- google fonts -->
+<link
+href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i
+&amp;subset=latin-ext" rel="stylesheet">
+<link
+href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,8
+00,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+rel="stylesheet">
+<!-- //google fonts -->
+<!-- scrolling script -->
+<script>
+jQuery(document).ready(function($) {
+$(".scroll").click(function(event){
+event.preventDefault();
+$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+});
+});
+27
+</script>
+<!-- //scrolling script -->
+</head>
+<body>
+<!-- header -->
+<header>
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container">
+<h1>
+<a class="navbar-brand text-white" href="#">
+TIME TABLE
+</a>
+</h1>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav ml-lg-auto text-center align-items-center">
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="index.php">Home
+<span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin.php">Admin </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="staff.php">Staff </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="student.php">Student </a>
+</li>
+28
+</ul>
+</div>
+</div>
+<!-- /.container -->
+</nav>
+</header>
+<!-- //header -->
+<!-- banner -->
+<div class="innerpage-banner">
+<div class="inner-page-layer">
+</div>
+</div>
+<!-- //banner -->
+<!-- about -->
+<!-- //about -->
+<!-- about bottom -->
+<!-- //about bottom -->
+<!-- Trainers -->
+<section class="trainers py-5">
+<h3 class="heading text-center mb-5">Admin Login </h3>
+<form name="form1" method="post" action="">
+<table width="312" height="127" border="0" align="center">
+<tr>
+<td>UserName</td>
+<td><label>
+<input name="username" type="text" id="username" required="" placeholder="UserName">
+</label></td>
+29
+</tr>
+<tr>
+<td>Password</td>
+<td><label>
+<input name="password" type="password" id="password" required=""
+placeholder="Password">
+</label></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><label>
+<input name="btn" type="submit" id="btn" value="Login">
+</label></td>
+</tr>
+</table>
+</form>
+</section>
+<!-- //Trainers -->
+<!-- create -->
+<!-- //create -->
+<!-- social icons -->
+<!-- //social icons -->
+<!-- footer -->
+<footer class="py-5">
+<div class="copyright mt-5 text-center">
+<p>All Rights Reserved | Design by <a href="#"> Admin</a> </p>
+</div>
+</footer>
+30
+<!-- //footer -->
+<!--model-forms-->
+<!--/Login-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Login Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label class="mb-2">Email address</label>
+<input type="email" class="form-control" id="exampleInputEmail1" aria-
+describedby="emailHelp" placeholder="" required="">
+<small id="emailHelp" class="form-text text-muted">We'll never share your email with
+anyone else.</small>
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder=""
+required="">
+</div>
+<div class="form-check mb-2">
+<input type="checkbox" class="form-check-input" id="exampleCheck1">
+<label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div>
+31
+<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
+<p class="text-center pb-4">
+<a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Don't have an
+account?</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Login-->
+<!--/Register-->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Register Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label>First name</label>
+<input type="text" class="form-control" id="validationDefault01" placeholder=""
+required="">
+</div>
+<div class="form-group">
+32
+<label>Last name</label>
+<input type="text" class="form-control" id="validationDefault02" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="password1" placeholder="" required="">
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+<input type="password" class="form-control" id="password2" placeholder="" required="">
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Register</button>
+<p class="text-center pb-4">
+<a href="#">By clicking Register, I agree to your terms</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Register-->
+<!--//model-forms-->
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!-- //js -->
+<!-- Banner text Responsiveslides -->
+33
+<script src="js/responsiveslides.min.js"></script>
+<script>
+// You can also use"$(window).load(function() {"
+$(function () {
+// Slideshow 4
+$("#slider3").responsiveSlides({
+auto: true,
+pager: true,
+nav: false,
+speed: 500,
+namespace: "callbacks",
+before: function () {
+$('.events').append("<li>before event fired.</li>");
+},
+after: function () {
+$('.events').append("<li>after event fired.</li>");
+}
+});
+});
+</script>
+<!-- //Banner text Responsiveslides -->
+<script src="js/smoothscroll.js"></script><!-- Smooth scrolling -->
+<!-- start-smoth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+jQuery(document).ready(function ($) {
+$(".scroll").click(function (event) {
+event.preventDefault();
+$('html,body').animate({
+scrollTop: $(this.hash).offset().top
+34
+}, 900);
+});
+});
+</script>
+<script>
+$(document).ready(function () {
+/*
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+*/
+$().UItoTop({
+easingType: 'easeOutQuart'
+});
+});
+</script>
+<!-- //end-smoth-scrolling -->
+</body>
+</html>
+Admin Add Staff
+<?php
+extract($_POST);
+session_start();
+include("dbconnect.php");
+35
+if(isset($btn))
+{
+$sname=$_REQUEST['name'];
+$email=$_REQUEST['contact'];
+$qualification=$_REQUEST['address'];
+$experience=$_REQUEST['mail'];
+$depart=$_REQUEST['department'];
+$uname=$_REQUEST['username'];
+$pass=$_REQUEST['password'];
+$sql = "SELECT id FROM add_staff ";
+$sid=0;
+$result = $conn->query($sql);
+while($row = $result->fetch_assoc())
+{
+$sid=$row['id'];
+}
+$sid=$sid+1;
+$qq="insert into add_staff
+values('$sid','$sname','$email','$qualification','$experience','$depart','$uname','$pass','0','0')";
+if ($conn->query($qq) === TRUE){
+?>
+<script language="javascript" type="text/javascript">
+alert("Add SuccessFully");
+window.location.href="admin_home.php";
+</script>
+<?php
+}
+else
+{
+?>
+36
+<script language="javascript" type="text/javascript">
+alert("Failed");
+</script>
+<?php
+}
+$conn->close();
+}
+?>
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Time Table Generation | Admin </title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fitness Health Responsive web template, Bootstrap Web
+Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG,
+SonyEricsson, Motorola web design" />
+<script>
+addEventListener("load", function () {
+setTimeout(hideURLbar, 0);
+}, false);
+function hideURLbar() {
+window.scrollTo(0, 1);
+}
+37
+</script>
+<!-- css files -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+<link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+<link href="css/fontawesome-all.css" rel="stylesheet"><!-- fontawesome css -->
+<!-- //css files -->
+<!-- google fonts -->
+<link
+href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i
+&amp;subset=latin-ext" rel="stylesheet">
+<link
+href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,8
+00,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+rel="stylesheet">
+<!-- //google fonts -->
+<!-- scrolling script -->
+<script>
+jQuery(document).ready(function($) {
+$(".scroll").click(function(event){
+event.preventDefault();
+$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+});
+});
+</script>
+<!-- //scrolling script -->
+</head>
+<body>
+<!-- header -->
+<header>
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container">
+38
+<h1>
+<a class="navbar-brand text-white" href="#">
+TIME TABLE
+</a>
+</h1>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav ml-lg-auto text-center align-items-center">
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_home.php">Home
+<span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_add_staff.php">Add Staff </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_allot_timetable.php">Allot TimeTable </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_timetable_department.php">TimeTable Department </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="index.php">Logout </a>
+</li>
+</ul>
+</div>
+</div>
+<!-- /.container -->
+39
+</nav>
+</header>
+<!-- //header -->
+<!-- banner -->
+<div class="innerpage-banner">
+<div class="inner-page-layer">
+</div>
+</div>
+<!-- //banner -->
+<!-- about -->
+<!-- //about -->
+<!-- about bottom -->
+<!-- //about bottom -->
+<!-- Trainers -->
+<section class="trainers py-5">
+<h3 class="heading text-center mb-5">Add Staff </h3>
+<form name="form1" method="post" action="">
+<table width="363" height="246" border="0" align="center">
+<tr>
+<td>Staff Name </td>
+<td><input name="name" type="text" id="name" placeholder="Staff Name"
+required=""></td>
+</tr>
+<tr>
+<td>Contact</td>
+<td><label>
+<input name="contact" type="text" id="contact" placeholder="Contact" required="">
+</label></td>
+</tr>
+40
+<tr>
+<td>Address</td>
+<td><label>
+<input name="address" type="text" id="address" placeholder="Address" required="">
+</label></td>
+</tr>
+<tr>
+<td>EMail_ID</td>
+<td><label>
+<input name="mail" type="text" id="mail" placeholder="Email_ID" required="">
+</label></td>
+</tr>
+<tr>
+<td>Department</td>
+<td><label>
+<select name="department" id="department">
+<option value="B.Sc(C.S)" selected>B.Sc(C.S)</option>
+<option value="BCA">BCA</option>
+<option value="MCA">MCA</option>
+<option value="M.Sc(C.S)">M.Sc(C.S)</option>
+<option value="M.Sc(IT)">M.Sc(IT)</option>
+</select>
+</label></td>
+</tr>
+<tr>
+<td>UserName</td>
+<td><label>
+<input name="username" type="text" id="username" placeholder="UserName" required="">
+</label></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><label>
+41
+<input name="password" type="password" id="password" value="" placeholder="Password"
+required="">
+</label></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><label>
+<input name="btn" type="submit" id="btn" value="Add">
+</label></td>
+</tr>
+</table>
+</form>
+</section>
+<!-- //Trainers -->
+<!-- create -->
+<!-- //create -->
+<!-- social icons -->
+<!-- //social icons -->
+<!-- footer -->
+<footer class="py-5">
+<div class="copyright mt-5 text-center">
+<p>All Rights Reserved | Design by <a href="#"> Admin</a> </p>
+</div>
+</footer>
+<!-- //footer -->
+<!--model-forms-->
+<!--/Login-->
+42
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Login Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label class="mb-2">Email address</label>
+<input type="email" class="form-control" id="exampleInputEmail1" aria-
+describedby="emailHelp" placeholder="" required="">
+<small id="emailHelp" class="form-text text-muted">We'll never share your email with
+anyone else.</small>
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder=""
+required="">
+</div>
+<div class="form-check mb-2">
+<input type="checkbox" class="form-check-input" id="exampleCheck1">
+<label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
+<p class="text-center pb-4">
+<a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Don't have an
+account?</a>
+43
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Login-->
+<!--/Register-->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Register Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label>First name</label>
+<input type="text" class="form-control" id="validationDefault01" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label>Last name</label>
+<input type="text" class="form-control" id="validationDefault02" placeholder=""
+required="">
+</div>
+44
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="password1" placeholder="" required="">
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+<input type="password" class="form-control" id="password2" placeholder="" required="">
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Register</button>
+<p class="text-center pb-4">
+<a href="#">By clicking Register, I agree to your terms</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Register-->
+<!--//model-forms-->
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!-- //js -->
+<!-- Banner text Responsiveslides -->
+<script src="js/responsiveslides.min.js"></script>
+<script>
+// You can also use"$(window).load(function() {"
+$(function () {
+45
+// Slideshow 4
+$("#slider3").responsiveSlides({
+auto: true,
+pager: true,
+nav: false,
+speed: 500,
+namespace: "callbacks",
+before: function () {
+$('.events').append("<li>before event fired.</li>");
+},
+after: function () {
+$('.events').append("<li>after event fired.</li>");
+}
+});
+});
+</script>
+<!-- //Banner text Responsiveslides -->
+<script src="js/smoothscroll.js"></script><!-- Smooth scrolling -->
+<!-- start-smoth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+jQuery(document).ready(function ($) {
+$(".scroll").click(function (event) {
+event.preventDefault();
+$('html,body').animate({
+scrollTop: $(this.hash).offset().top
+}, 900);
+});
+});
+</script>
+46
+<script>
+$(document).ready(function () {
+/*
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+*/
+$().UItoTop({
+easingType: 'easeOutQuart'
+});
+});
+</script>
+<!-- //end-smoth-scrolling -->
+</body>
+</html>
+Admin Allot Time Table
+<?php
+extract($_POST);
+session_start();
+include("dbconnect.php");
+?>
+<!--
+author: W3layouts
+47
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Time Table Generation | Admin </title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fitness Health Responsive web template, Bootstrap Web
+Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG,
+SonyEricsson, Motorola web design" />
+<script>
+addEventListener("load", function () {
+setTimeout(hideURLbar, 0);
+}, false);
+function hideURLbar() {
+window.scrollTo(0, 1);
+}
+</script>
+<!-- css files -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+<link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+<link href="css/fontawesome-all.css" rel="stylesheet"><!-- fontawesome css -->
+<!-- //css files -->
+<!-- google fonts -->
+48
+<link
+href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i
+&amp;subset=latin-ext" rel="stylesheet">
+<link
+href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,8
+00,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+rel="stylesheet">
+<!-- //google fonts -->
+<!-- scrolling script -->
+<script>
+jQuery(document).ready(function($) {
+$(".scroll").click(function(event){
+event.preventDefault();
+$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+});
+});
+</script>
+<!-- //scrolling script -->
+</head>
+<body>
+<!-- header -->
+<header>
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container">
+<h1>
+<a class="navbar-brand text-white" href="#">
+TIME TABLE
+</a>
+</h1>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+49
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav ml-lg-auto text-center align-items-center">
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_home.php">Home
+<span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_add_staff.php">Add Staff </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_allot_timetable_home.php">Allot TimeTable </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_timetable_department.php">TimeTable Department </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="index.php">Logout </a>
+</li>
+</ul>
+</div>
+</div>
+<!-- /.container -->
+</nav>
+</header>
+<!-- //header -->
+<!-- banner -->
+<div class="innerpage-banner">
+<div class="inner-page-layer">
+</div>
+</div>
+50
+<!-- //banner -->
+<!-- about -->
+<!-- //about -->
+<!-- about bottom -->
+<!-- //about bottom -->
+<!-- Trainers -->
+<section class="trainers py-5">
+<h3 class="heading text-center mb-5">Allot TimeTable </h3>
+<form name="form1" method="post" action=""> </form>
+</section>
+<!-- //Trainers -->
+<!-- create -->
+<!-- //create -->
+<!-- social icons -->
+<!-- //social icons -->
+<!-- footer -->
+<footer class="py-5">
+<div class="copyright mt-5 text-center">
+<p>All Rights Reserved | Design by <a href="#"> Admin</a> </p>
+</div>
+</footer>
+<!-- //footer -->
+<!--model-forms-->
+51
+<!--/Login-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Login Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label class="mb-2">Email address</label>
+<input type="email" class="form-control" id="exampleInputEmail1" aria-
+describedby="emailHelp" placeholder="" required="">
+<small id="emailHelp" class="form-text text-muted">We'll never share your email with
+anyone else.</small>
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder=""
+required="">
+</div>
+<div class="form-check mb-2">
+<input type="checkbox" class="form-check-input" id="exampleCheck1">
+<label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
+<p class="text-center pb-4">
+52
+<a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Don't have an
+account?</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Login-->
+<!--/Register-->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Register Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label>First name</label>
+<input type="text" class="form-control" id="validationDefault01" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label>Last name</label>
+53
+<input type="text" class="form-control" id="validationDefault02" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="password1" placeholder="" required="">
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+<input type="password" class="form-control" id="password2" placeholder="" required="">
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Register</button>
+<p class="text-center pb-4">
+<a href="#">By clicking Register, I agree to your terms</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Register-->
+<!--//model-forms-->
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!-- //js -->
+<!-- Banner text Responsiveslides -->
+<script src="js/responsiveslides.min.js"></script>
+54
+<script>
+// You can also use"$(window).load(function() {"
+$(function () {
+// Slideshow 4
+$("#slider3").responsiveSlides({
+auto: true,
+pager: true,
+nav: false,
+speed: 500,
+namespace: "callbacks",
+before: function () {
+$('.events').append("<li>before event fired.</li>");
+},
+after: function () {
+$('.events').append("<li>after event fired.</li>");
+}
+});
+});
+</script>
+<!-- //Banner text Responsiveslides -->
+<script src="js/smoothscroll.js"></script><!-- Smooth scrolling -->
+<!-- start-smoth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+jQuery(document).ready(function ($) {
+$(".scroll").click(function (event) {
+event.preventDefault();
+$('html,body').animate({
+scrollTop: $(this.hash).offset().top
+}, 900);
+55
+});
+});
+</script>
+<script>
+$(document).ready(function () {
+/*
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+*/
+$().UItoTop({
+easingType: 'easeOutQuart'
+});
+});
+</script>
+<!-- //end-smoth-scrolling -->
+</body>
+</html>
+Admin Time Table Department
+<?php
+extract($_POST);
+session_start();
+include("dbconnect.php");
+?>
+56
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Time Table Generation | Admin </title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fitness Health Responsive web template, Bootstrap Web
+Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG,
+SonyEricsson, Motorola web design" />
+<script>
+addEventListener("load", function () {
+setTimeout(hideURLbar, 0);
+}, false);
+function hideURLbar() {
+window.scrollTo(0, 1);
+}
+</script>
+<!-- css files -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+<link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+<link href="css/fontawesome-all.css" rel="stylesheet"><!-- fontawesome css -->
+<!-- //css files -->
+57
+<!-- google fonts -->
+<link
+href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i
+&amp;subset=latin-ext" rel="stylesheet">
+<link
+href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,8
+00,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+rel="stylesheet">
+<!-- //google fonts -->
+<!-- scrolling script -->
+<script>
+jQuery(document).ready(function($) {
+$(".scroll").click(function(event){
+event.preventDefault();
+$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+});
+});
+</script>
+<!-- //scrolling script -->
+</head>
+<body>
+<!-- header -->
+<header>
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container">
+<h1>
+<a class="navbar-brand text-white" href="#">
+TIME TABLE
+</a>
+</h1>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+aria-expanded="false" aria-label="Toggle navigation">
+58
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav ml-lg-auto text-center align-items-center">
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_home.php">Home
+<span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_add_staff.php">Add Staff </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_allot_timetable.php">Allot TimeTable </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin_timetable_department.php">TimeTable Department </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="index.php">Logout </a>
+</li>
+</ul>
+</div>
+</div>
+<!-- /.container -->
+</nav>
+</header>
+<!-- //header -->
+<!-- banner -->
+<div class="innerpage-banner">
+<div class="inner-page-layer">
+</div>
+59
+</div>
+<!-- //banner -->
+<!-- about -->
+<!-- //about -->
+<!-- about bottom -->
+<!-- //about bottom -->
+<!-- Trainers -->
+<section class="trainers py-5">
+<h3 class="heading text-center mb-5">TimeTable Department </h3>
+<form name="form1" method="post" action="">
+<table width="521" height="91" border="0" align="center">
+<tr>
+<td>Day1:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Department</td>
+<td>Staff</td>
+<td>Subject</td>
+<td>Time</td>
+<td>Period</td>
+</tr>
+<?php
+$qq="Select * from day1";
+$result =$conn->query($qq);
+while($row =$result->fetch_assoc())
+60
+{
+?>
+<tr>
+<td><?php echo $row['department'];?></td>
+<td><?php echo $row['staffname'];?></td>
+<td><?php echo $row['subject'];?></td>
+<td><?php echo $row['time'];?></td>
+<td><?php echo $row['pd'];?></td>
+<?php
+}
+?>
+</table>
+<p>&nbsp;</p>
+<table width="521" height="91" border="0" align="center">
+<tr>
+<td>Day2:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Department</td>
+<td>Staff</td>
+<td>Subject</td>
+<td>Time</td>
+<td>Period</td>
+</tr>
+<?php
+$qq="Select * from day2";
+$result =$conn->query($qq);
+while($row =$result->fetch_assoc())
+61
+{
+?>
+<tr>
+<td><?php echo $row['department'];?></td>
+<td><?php echo $row['staffname'];?></td>
+<td><?php echo $row['subject'];?></td>
+<td><?php echo $row['time'];?></td>
+<td><?php echo $row['pd'];?></td>
+<?php
+}
+?>
+</table>
+<p>&nbsp;</p>
+<table width="521" height="91" border="0" align="center">
+<tr>
+<td>Day3:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Department</td>
+<td>Staff</td>
+<td>Subject</td>
+<td>Time</td>
+<td>Period</td>
+</tr>
+<?php
+$qq="Select * from day3";
+$result =$conn->query($qq);
+while($row =$result->fetch_assoc())
+{
+62
+?>
+<tr>
+<td><?php echo $row['department'];?></td>
+<td><?php echo $row['staffname'];?></td>
+<td><?php echo $row['subject'];?></td>
+<td><?php echo $row['time'];?></td>
+<td><?php echo $row['pd'];?></td>
+<?php
+}
+?>
+</table>
+<p>&nbsp;</p>
+<table width="521" height="91" border="0" align="center">
+<tr>
+<td>Day4:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Department</td>
+<td>Staff</td>
+<td>Subject</td>
+<td>Time</td>
+<td>Period</td>
+</tr>
+<?php
+$qq="Select * from day4";
+$result =$conn->query($qq);
+while($row =$result->fetch_assoc())
+{
+?>
+63
+<tr>
+<td><?php echo $row['department'];?></td>
+<td><?php echo $row['staffname'];?></td>
+<td><?php echo $row['subject'];?></td>
+<td><?php echo $row['time'];?></td>
+<td><?php echo $row['pd'];?></td>
+<?php
+}
+?>
+</table>
+<p>&nbsp;</p>
+<table width="521" height="91" border="0" align="center">
+<tr>
+<td>Day5:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Department</td>
+<td>Staff</td>
+<td>Subject</td>
+<td>Time</td>
+<td>Period</td>
+</tr>
+<?php
+$qq="Select * from day5";
+$result =$conn->query($qq);
+while($row =$result->fetch_assoc())
+{
+?>
+<tr>
+64
+<td><?php echo $row['department'];?></td>
+<td><?php echo $row['staffname'];?></td>
+<td><?php echo $row['subject'];?></td>
+<td><?php echo $row['time'];?></td>
+<td><?php echo $row['pd'];?></td>
+<?php
+}
+?>
+</table>
+<p>&nbsp;</p>
+<table width="521" height="91" border="0" align="center">
+<tr>
+<td>Day6:</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+<td>&nbsp;</td>
+</tr>
+<tr>
+<td>Department</td>
+<td>Staff</td>
+<td>Subject</td>
+<td>Time</td>
+<td>Period</td>
+</tr>
+<?php
+$qq="Select * from day6";
+$result =$conn->query($qq);
+while($row =$result->fetch_assoc())
+{
+?>
+<tr>
+<td><?php echo $row['department'];?></td>
+65
+<td><?php echo $row['staffname'];?></td>
+<td><?php echo $row['subject'];?></td>
+<td><?php echo $row['time'];?></td>
+<td><?php echo $row['pd'];?></td>
+<?php
+}
+?>
+</table>
+</form>
+</section>
+<!-- //Trainers -->
+<!-- create -->
+<!-- //create -->
+<!-- social icons -->
+<!-- //social icons -->
+<!-- footer -->
+<footer class="py-5">
+<div class="copyright mt-5 text-center">
+<p>All Rights Reserved | Design by <a href="#"> Admin</a> </p>
+</div>
+</footer>
+<!-- //footer -->
+<!--model-forms-->
+<!--/Login-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+66
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Login Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label class="mb-2">Email address</label>
+<input type="email" class="form-control" id="exampleInputEmail1" aria-
+describedby="emailHelp" placeholder="" required="">
+<small id="emailHelp" class="form-text text-muted">We'll never share your email with
+anyone else.</small>
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder=""
+required="">
+</div>
+<div class="form-check mb-2">
+<input type="checkbox" class="form-check-input" id="exampleCheck1">
+<label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
+<p class="text-center pb-4">
+<a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Don't have an
+account?</a>
+</p>
+</form>
+</div>
+67
+</div>
+</div>
+</div>
+</div>
+<!--//Login-->
+<!--/Register-->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Register Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label>First name</label>
+<input type="text" class="form-control" id="validationDefault01" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label>Last name</label>
+<input type="text" class="form-control" id="validationDefault02" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+68
+<input type="password" class="form-control" id="password1" placeholder="" required="">
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+<input type="password" class="form-control" id="password2" placeholder="" required="">
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Register</button>
+<p class="text-center pb-4">
+<a href="#">By clicking Register, I agree to your terms</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Register-->
+<!--//model-forms-->
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!-- //js -->
+<!-- Banner text Responsiveslides -->
+<script src="js/responsiveslides.min.js"></script>
+<script>
+// You can also use"$(window).load(function() {"
+$(function () {
+// Slideshow 4
+$("#slider3").responsiveSlides({
+auto: true,
+69
+pager: true,
+nav: false,
+speed: 500,
+namespace: "callbacks",
+before: function () {
+$('.events').append("<li>before event fired.</li>");
+},
+after: function () {
+$('.events').append("<li>after event fired.</li>");
+}
+});
+});
+</script>
+<!-- //Banner text Responsiveslides -->
+<script src="js/smoothscroll.js"></script><!-- Smooth scrolling -->
+<!-- start-smoth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+jQuery(document).ready(function ($) {
+$(".scroll").click(function (event) {
+event.preventDefault();
+$('html,body').animate({
+scrollTop: $(this.hash).offset().top
+}, 900);
+});
+});
+</script>
+<script>
+$(document).ready(function () {
+/*
+70
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+easingType: 'linear'
+};
+*/
+$().UItoTop({
+easingType: 'easeOutQuart'
+});
+});
+</script>
+<!-- //end-smoth-scrolling -->
+</body>
+</html>
+Student
+<?php
+extract($_POST);
+session_start();
+include("dbconnect.php");
+if(isset($_POST['btn']))
+{
+$uname=$_REQUEST['username'];
+$password=$_REQUEST['password'];
+if($conn->connect_error)
+{
+71
+die("Connection failed: " . $conn->connect_error);
+}
+else
+{
+$qry="select * from user_register where username='$uname' and password='$password'";
+$result = mysqli_query($conn, $qry);
+if (mysqli_num_rows($result))
+{
+$_SESSION['uname']=$uname;
+?>
+<script language="javascript">
+alert("login Success");
+window.location.href="student_home.php";
+</script>
+<?php
+}
+else
+{
+?>
+<script language="javascript">
+alert("Invalid user");
+</script>
+<?php
+}
+}
+$conn->close();
+}
+?>
+72
+<!--
+author: W3layouts
+author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Time Table Generation | Admin </title>
+<!-- for-mobile-apps -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Fitness Health Responsive web template, Bootstrap Web
+Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG,
+SonyEricsson, Motorola web design" />
+<script>
+addEventListener("load", function () {
+setTimeout(hideURLbar, 0);
+}, false);
+function hideURLbar() {
+window.scrollTo(0, 1);
+}
+</script>
+<!-- css files -->
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' /><!-- bootstrap css -->
+<link href="css/style.css" rel='stylesheet' type='text/css' /><!-- custom css -->
+<link href="css/fontawesome-all.css" rel="stylesheet"><!-- fontawesome css -->
+<!-- //css files -->
+73
+<!-- google fonts -->
+<link
+href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i
+&amp;subset=latin-ext" rel="stylesheet">
+<link
+href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,8
+00,800i&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+rel="stylesheet">
+<!-- //google fonts -->
+<!-- scrolling script -->
+<script>
+jQuery(document).ready(function($) {
+$(".scroll").click(function(event){
+event.preventDefault();
+$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+});
+});
+</script>
+<!-- //scrolling script -->
+</head>
+<body>
+<!-- header -->
+<header>
+<nav class="navbar navbar-expand-lg navbar-light">
+<div class="container">
+<h1>
+<a class="navbar-brand text-white" href="#">
+TIME TABLE
+</a>
+</h1>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-
+target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+74
+aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<ul class="navbar-nav ml-lg-auto text-center align-items-center">
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="index.php">Home
+<span class="sr-only">(current)</span>
+</a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="admin.php">Admin </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="staff.php">Staff </a>
+</li>
+<li class="nav-item mr-lg-3 mt-lg-0 mt-3">
+<a class="nav-link" href="student.php">Student </a>
+</li>
+</ul>
+</div>
+</div>
+<!-- /.container -->
+</nav>
+</header>
+<!-- //header -->
+<!-- banner -->
+<div class="innerpage-banner">
+<div class="inner-page-layer">
+</div>
+</div>
+75
+<!-- //banner -->
+<!-- about -->
+<!-- //about -->
+<!-- about bottom -->
+<!-- //about bottom -->
+<!-- Trainers -->
+<section class="trainers py-5">
+<h3 class="heading text-center mb-5">Student Login </h3>
+<form name="form1" method="post" action="">
+<table width="312" height="127" border="0" align="center">
+<tr>
+<td>UserName</td>
+<td><label>
+<input name="username" type="text" id="username" required="" placeholder="UserName">
+</label></td>
+</tr>
+<tr>
+<td>Password</td>
+<td><label>
+<input name="password" type="password" id="password" required=""
+placeholder="Password">
+</label></td>
+</tr>
+<tr>
+<td>&nbsp;</td>
+<td><label>
+<input name="btn" type="submit" id="btn" value="Login">
+</label></td>
+</tr>
+<tr>
+76
+<td>&nbsp;</td>
+<td><a href="user_register.php">New Student ?</a> </td>
+</tr>
+</table>
+</form>
+</section>
+<!-- //Trainers -->
+<!-- create -->
+<!-- //create -->
+<!-- social icons -->
+<!-- //social icons -->
+<!-- footer -->
+<footer class="py-5">
+<div class="copyright mt-5 text-center">
+<p>All Rights Reserved | Design by <a href="#"> Admin</a> </p>
+</div>
+</footer>
+<!-- //footer -->
+<!--model-forms-->
+<!--/Login-->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+77
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Login Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label class="mb-2">Email address</label>
+<input type="email" class="form-control" id="exampleInputEmail1" aria-
+describedby="emailHelp" placeholder="" required="">
+<small id="emailHelp" class="form-text text-muted">We'll never share your email with
+anyone else.</small>
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="exampleInputPassword1" placeholder=""
+required="">
+</div>
+<div class="form-check mb-2">
+<input type="checkbox" class="form-check-input" id="exampleCheck1">
+<label class="form-check-label" for="exampleCheck1">Check me out</label>
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Sign In</button>
+<p class="text-center pb-4">
+<a href="#" data-toggle="modal" data-target="#exampleModalCenter2"> Don't have an
+account?</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+78
+</div>
+<!--//Login-->
+<!--/Register-->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-
+hidden="true">
+<div class="modal-dialog modal-dialog-centered" role="document">
+<div class="modal-content">
+<div class="modal-header text-center">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+<span aria-hidden="true">&times;</span>
+</button>
+</div>
+<div class="modal-body">
+<div class="login px-4 mx-auto mw-100">
+<h5 class="text-center mb-4">Register Now</h5>
+<form action="#" method="post">
+<div class="form-group">
+<label>First name</label>
+<input type="text" class="form-control" id="validationDefault01" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label>Last name</label>
+<input type="text" class="form-control" id="validationDefault02" placeholder=""
+required="">
+</div>
+<div class="form-group">
+<label class="mb-2">Password</label>
+<input type="password" class="form-control" id="password1" placeholder="" required="">
+</div>
+<div class="form-group">
+<label>Confirm Password</label>
+79
+<input type="password" class="form-control" id="password2" placeholder="" required="">
+</div>
+<button type="submit" class="btn btn-primary submit mb-4">Register</button>
+<p class="text-center pb-4">
+<a href="#">By clicking Register, I agree to your terms</a>
+</p>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--//Register-->
+<!--//model-forms-->
+<!-- js -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<!-- //js -->
+<!-- Banner text Responsiveslides -->
+<script src="js/responsiveslides.min.js"></script>
+<script>
+// You can also use"$(window).load(function() {"
+$(function () {
+// Slideshow 4
+$("#slider3").responsiveSlides({
+auto: true,
+pager: true,
+nav: false,
+speed: 500,
+namespace: "callbacks",
+80
+before: function () {
+$('.events').append("<li>before event fired.</li>");
+},
+after: function () {
+$('.events').append("<li>after event fired.</li>");
+}
+});
+});
+</script>
+<!-- //Banner text Responsiveslides -->
+<script src="js/smoothscroll.js"></script><!-- Smooth scrolling -->
+<!-- start-smoth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+jQuery(document).ready(function ($) {
+$(".scroll").click(function (event) {
+event.preventDefault();
+$('html,body').animate({
+scrollTop: $(this.hash).offset().top
+}, 900);
+});
+});
+</script>
+<script>
+$(document).ready(function () {
+/*
+var defaults = {
+containerID: 'toTop', // fading element id
+containerHoverID: 'toTopHover', // fading element hover id
+scrollSpeed: 1200,
+81
+easingType: 'linear'
+};
+*/
+$().UItoTop({
+easingType: 'easeOutQuart'
+});
+});
+</script>
+<!-- //end-smoth-scrolling -->
+</body>
+</html>
